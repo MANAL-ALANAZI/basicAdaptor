@@ -19,7 +19,14 @@ rl.question('What do you want to search? ', (answer) => {
 var getDefinition = function (keyword) {
 
     //let keyword = 'melanoma';
-    let url = `http://data.bioontology.org/search?q=${keyword}&ontologies=NCIT,GO&roots_only=true&apikey=${apiKey}`
+    getDefinitionforOntology(keyword, 'NCIT');
+    getDefinitionforOntology(keyword, 'EFO');
+    getDefinitionforOntology(keyword, 'GO');
+
+}
+
+var getDefinitionforOntology = function (keyword, ontology) {
+    let url = `http://data.bioontology.org/search?q=${keyword}&ontologies=${ontology}&roots_only=true&apikey=${apiKey}`
 
     request(url, function (err, res, body) {
         if (err) {
@@ -29,10 +36,12 @@ var getDefinition = function (keyword) {
             let response = JSON.parse(body);
 
             if (response.collection[0] && response.collection[0].definition[0])
-                console.log(response.collection[0].definition[0]);
+                console.log(ontology + ': ' + response.collection[0].definition[0]);
 
             else
-                console.log('No Definition found');
+                console.log(ontology + ': ' + 'No Definition found');
+
+            console.log("------------------------------------");
         }
     });
 }
