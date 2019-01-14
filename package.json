@@ -1,0 +1,15 @@
+{
+  "name": "annotator",
+  "version": "1.0.0",
+  "description": "Annotator class",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Manal",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.88.0"
+  },
+  "devDependencies": {}
+}
